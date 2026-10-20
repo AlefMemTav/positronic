@@ -1,0 +1,89 @@
+
+==============================================================================
+EXPERIMENTO 1 - reconhecer pessoa após n exposições (40 pessoas, ruído=1.2, 10 sementes)
+==============================================================================
+acurácia por nº de exposições                 n=1            n=2            n=3            n=5           n=10
+ranhuras                              0.718±0.020    0.887±0.015    0.947±0.009    0.978±0.007    0.990±0.003
+kNN-1 (guarda tudo)                   0.718±0.020    0.791±0.020    0.843±0.012    0.875±0.015    0.910±0.017
+centro da classe (NCM)                0.718±0.020    0.890±0.018    0.949±0.008    0.979±0.007    0.990±0.003
+MLP retreinado com tudo               0.345±0.027    0.567±0.018    0.712±0.015    0.826±0.010    0.928±0.008
+
+==============================================================================
+EXPERIMENTO 2 - 6 etapas x 8 pessoas novas (8 exposições cada); 10 sementes
+==============================================================================
+acurácia em TODAS as pessoas já vistas  após etapa 1  após etapa 2  após etapa 3  após etapa 4  após etapa 5  após etapa 6
+ranhuras                             0.996±0.004   0.994±0.004   0.991±0.005   0.988±0.005   0.985±0.005   0.982±0.003
+kNN-1 (guarda tudo)                  0.967±0.024   0.952±0.014   0.936±0.018   0.915±0.018   0.902±0.018   0.889±0.015
+centro da classe (NCM)               0.996±0.004   0.995±0.004   0.992±0.006   0.988±0.005   0.986±0.004   0.983±0.003
+MLP retreinado com tudo              0.944±0.032   0.934±0.018   0.929±0.014   0.923±0.019   0.911±0.015   0.905±0.008
+MLP incremental (só lote novo)       0.824±0.058   0.767±0.044   0.695±0.039   0.626±0.037   0.550±0.031   0.478±0.027
+
+retenção: pessoas da etapa 1, no fim       acurácia
+ranhuras                              0.983±0.012
+kNN-1 (guarda tudo)                   0.884±0.038
+centro da classe (NCM)                0.983±0.012
+MLP retreinado com tudo               0.909±0.025
+MLP incremental (só lote novo)        0.160±0.092
+
+==============================================================================
+EXPERIMENTO 3 - descobrir pessoas SEM rótulos (20 pessoas reais, 15 observações
+   embaralhadas cada). Ideal: 20 ranhuras e ARI=1. Prior de largura fixo w0=0.32; 10 sementes
+==============================================================================
+
+(a) variantes x ruído real   [ARI / nº de ranhuras]   z_max=2.0
+variante                                     σ=0.3           σ=0.4           σ=0.5
+completo (erosão + largura)              0.99 / 20       1.00 / 20       0.99 / 23
+só o centro erode                        0.99 / 20       1.00 / 20       0.99 / 23
+sem erosão (leader clustering)           1.00 / 20       1.00 / 20       0.82 / 38
+k-means (K=20 dado de graça)             1.00 / 20       1.00 / 20       0.99 / 20
+
+(b) sensibilidade ao limiar z_max (modelo completo, σ=0.4)
+limiar                   ARI   nº ranhuras
+z_max=1.0               0.74          83.5
+z_max=1.5               0.99          21.1
+z_max=2.0               1.00          20.1
+z_max=3.0               0.69          16.4
+z_max=5.0               0.04           3.9
+z_max=8.0               0.00           1.3
+
+(c) sensibilidade ao prior de largura w0 (σ=0.4, z_max=2.0): a largura
+    adaptativa conserta um prior errado?   [ARI / nº de ranhuras]
+prior           com largura adapt.        largura fixa
+w0=0.08                 0.01 / 298          0.00 / 299
+w0=0.16                  0.92 / 40           0.90 / 44
+w0=0.32                  1.00 / 20           1.00 / 20
+w0=0.64                  0.39 / 11           0.68 / 14
+w0=1.28                   0.01 / 1            0.02 / 1
+
+==============================================================================
+EXPERIMENTO 4 - contexto. 30 pessoas conhecidas vistas 5x em 'calmo' e 5x em 'medo';
+   20 pessoas novas vistas 3x só em 'calmo'. Teste: as novas em 'medo'. 10 sementes
+==============================================================================
+modelo                                   novas em 'medo'        conhecidas vetores guardados
+ranhura plana (ignora contexto)              0.460±0.047       0.974±0.006                50
+ranhura + câmaras                            0.429±0.041       0.975±0.007                80
+ranhura + câmaras + deslocamento             0.836±0.030       0.987±0.006                80
+kNN-1 (guarda tudo)                          0.296±0.043       0.869±0.020               360
+kNN-1 + deslocamento (mesmo truque)          0.682±0.049       0.915±0.016               360
+centro da classe (NCM)                       0.450±0.045       0.973±0.005                50
+NCM + deslocamento (mesmo truque)            0.866±0.027       0.991±0.004                50
+
+Obs.: o deslocamento de contexto é aditivo e global NESTE gerador; isso favorece
+qualquer método que modele esse deslocamento (inclusive o kNN com o mesmo truque).
+
+==============================================================================
+EXPERIMENTO 5 - memória com orçamento: 60 pessoas, fluxo de 3000 observações com
+   popularidade Zipf; na metade a popularidade muda. Acurácia em quem JÁ foi visto. 10 sementes
+==============================================================================
+política de esquecimento               orçamento=10   orçamento=20   orçamento=30
+murchar (força decai c/ o tempo)        0.595±0.016    0.753±0.012    0.826±0.007
+LRU (menos recente)                     0.511±0.008    0.673±0.008    0.769±0.011
+LFU (menos frequente)                   0.419±0.045    0.573±0.051    0.687±0.080
+FIFO                                    0.444±0.009    0.592±0.009    0.694±0.009
+aleatório                               0.443±0.013    0.592±0.010    0.700±0.013
+
+teto (memória ilimitada, 60 ranhuras): 0.970±0.003
+
+real	1m7.272s
+user	1m27.426s
+sys	0m0.305s
