@@ -218,6 +218,16 @@ treino, com prior uniforme explícito entre as classes presentes no treino. A
 busca usa `np.geomspace(1e-12, 1e-1, 20)` para `var_smoothing`; nenhuma outra
 configuração ou transformação será ajustada.
 
+### MLP
+
+O MLP usa a transformação já implementada em
+`experimentos/06/modelos.py::prever_mlp`: concatenar aos vetores de treino um
+indicador one-hot do contexto de cada observação e, nas consultas, o indicador
+one-hot do contexto final. Não aplicar correção de deslocamento global ao MLP.
+Usar `hidden_layer_sizes=(hidden,)`, `alpha` da grade, `learning_rate_init=0.001`,
+`max_iter=200`, `early_stopping=True`, `n_iter_no_change=10` e
+`random_state=semente`.
+
 ### Desvio padrão para dimensionar o teste
 
 `s_Δ` é o desvio padrão amostral (`ddof=1`) dos 30 deltas pareados de calibração,
