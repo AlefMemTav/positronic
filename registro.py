@@ -106,14 +106,18 @@ def holm(p_valores) -> list[float]:
 
 def criar_registro(*, experimento: str, parametros: dict, metricas: dict,
                    sementes_calibracao: list[int],
-                   sementes_teste: list[int], configuracao: dict | None = None) -> dict:
+                   sementes_teste: list[int],
+                   sementes_metricas: list[int] | None = None,
+                   configuracao: dict | None = None) -> dict:
     """Cria documento JSON com observações por semente e proveniência."""
     metricas_validas = {}
-    n_teste = len(sementes_teste)
+    sementes_metricas = (sementes_teste if sementes_metricas is None
+                         else sementes_metricas)
+    n_metricas = len(sementes_metricas)
     for nome, valores in metricas.items():
         vetor = _vetor(valores, f"métrica {nome}")
-        if vetor.size != n_teste:
-            raise ValueError(f"{nome}: esperado um valor por semente de teste")
+        if vetor.size != n_metricas:
+            raise ValueError(f"{nome}: esperado um valor por semente de métrica")
         metricas_validas[nome] = [float(v) for v in vetor]
     return {
         "schema_version": 1,
@@ -131,6 +135,7 @@ def criar_registro(*, experimento: str, parametros: dict, metricas: dict,
         "sementes": {
             "calibracao": [int(s) for s in sementes_calibracao],
             "teste": [int(s) for s in sementes_teste],
+            "metricas": [int(s) for s in sementes_metricas],
         },
         "metricas_por_semente": metricas_validas,
     }
