@@ -37,37 +37,59 @@ Todo experimento novo deve incluir, quando fizer sentido para a tarefa:
 
 ## Visão geral (ordem sugerida)
 
-| Fase | Foco | Por quê agora | Esforço (estimativa) |
-|---|---|---|---|
-| 0 | Higiene do repositório | base para tudo o resto | 1 a 2 dias |
-| 1 | Núcleo sem prior mágico | o exp. 3 mostrou fragilidade | 2 a 4 dias |
-| 2 | **Exp. 6: contexto não aditivo** | primeiro teste que pode dar vantagem real | 3 a 5 dias |
-| 3 | Retorno rápido ("saudade") | testa uma promessa específica da ideia | 2 a 4 dias |
-| 4 | Ressonância entre ranhuras | a parte mais distinta da proposta | 1 a 2 semanas |
-| 5 | Ranhura espectral (modos) | testa se "ressonância" é mais que metáfora | 2 a 3 semanas |
-| 6 | Dados reais e concorrentes | sair do sintético | 2 a 3 semanas |
-| 7 | Revisão de literatura e escrita | saber o que é novo de fato | contínuo |
-| 8 | Hardware (adiado) | só se a fase 5 justificar | - |
+| Fase | Foco | Por quê agora | Esforço (estimativa) | Estado em 2026-10-21 |
+|---|---|---|---|---|
+| 0 | Higiene do repositório | base para tudo o resto | 1 a 2 dias | Parcial |
+| 1 | Núcleo sem prior mágico | o exp. 3 mostrou fragilidade | 2 a 4 dias | Executada; resultado inconclusivo |
+| 2 | **Exp. 6: contexto não aditivo** | primeiro teste que pode dar vantagem real | 3 a 5 dias | Executada; não informativa por efeito de teto |
+| 3 | Retorno rápido ("saudade") | testa uma promessa específica da ideia | 2 a 4 dias | Não iniciada |
+| 4 | Ressonância entre ranhuras | a parte mais distinta da proposta | 1 a 2 semanas | Não iniciada |
+| 5 | Ranhura espectral (modos) | testa se "ressonância" é mais que metáfora | 2 a 3 semanas | Não iniciada |
+| 6 | Dados reais e concorrentes | sair do sintético | 2 a 3 semanas | Não iniciada |
+| 7 | Revisão de literatura e escrita | saber o que é novo de fato | contínuo | Não concluída |
+| 8 | Hardware (adiado) | só se a fase 5 justificar | - | Adiada |
 
-As fases 0 e 1 são pré-requisito. As fases 2 a 5 são independentes entre si; a
-2 é a que eu faria primeiro porque pode derrubar ou sustentar a tese central
-mais rápido.
+O roteiro original considera as fases 0 e 1 pré-requisitos. Como a Fase 0 está
+parcial e a Fase 1 teve resultado inconclusivo, o estado dessas duas fases deve
+ser levado em conta antes de começar outro estudo. As fases 2 a 5 são
+independentes entre si depois que esses pré-requisitos forem tratados; a Fase 2
+foi executada primeiro por poder testar a tese central diretamente.
+
+### Leitura do estado atual
+
+O experimento 6 foi executado como a Fase 2, mas não respondeu à hipótese de
+vantagem das câmaras: a acurácia do melhor baseline na calibração deixou margem
+insuficiente para detectar o efeito mínimo. A conclusão registrada é
+"não informativo", não "confirmado" nem "refutado". Uma eventual repetição será
+um novo experimento, com pré-registro próprio; os resultados do experimento 6
+permanecem históricos.
+
+A Fase 1 também foi executada, mas seu resultado foi inconclusivo. A execução
+anterior à Fase 2 está documentada; ela não demonstra que a hipótese do núcleo
+sem prior mágico foi satisfeita.
 
 ---
 
 ## Fase 0 - Higiene
 
-- [ ] Testes unitários do núcleo (brotar com entrada distante, erosão converge
-      para a média, murchar respeita o orçamento, deslocamento recupera o `delta`
-      conhecido).
-- [ ] Separar **calibração** e **teste** no código (hoje as varreduras do exp. 3
-      são feitas sobre os mesmos dados que reportam).
-- [ ] Parâmetros de linha de comando (`--sigma`, `--seeds`, `--dim`) e saída em
-      JSON, além do texto.
-- [ ] Gráficos: curva de aprendizado (exp. 1), retenção por etapa (exp. 2),
-      sensibilidade (exp. 3b e 3c).
-- [ ] `pyproject.toml` ou `Makefile` com `make run` e `make test`.
-- [ ] Controle de versão (git) e um `CHANGELOG`.
+**Estado: parcialmente concluída.** O Git, as dependências fixadas, o CHANGELOG
+e o módulo de registro JSON para as execuções recentes existem. A lista abaixo
+separa o que está pronto do que continua pendente:
+
+| Item | Estado |
+|---|---|
+| Controle de versão (Git) e CHANGELOG | Concluído; o histórico de versões está em `CHANGELOG.md`. |
+| Testes unitários do núcleo (brotar, erosão, murchar e deslocamento) | Pendente. Os testes atuais cobrem o módulo de registro, não o núcleo. |
+| Separar calibração e teste nos experimentos antigos, em especial nas varreduras do experimento 3 | Pendente para os experimentos 1 a 5. As execuções novas da Fase 1 e do experimento 6 têm sementes separadas. |
+| Parâmetros de linha de comando e saída JSON para os experimentos antigos | Parcial. O registro JSON existe, mas os experimentos 1 a 5 não foram migrados para usá-lo. |
+| Gráficos dos experimentos 1, 2 e 3 | Pendente. |
+| `pyproject.toml` ou `Makefile` com comandos de execução e teste | Pendente. |
+
+Os experimentos 1 a 5 permanecem exploratórios; seus arquivos e números não
+serão reescritos para preencher retroativamente esses itens. Antes de iniciar
+outro experimento, decidir quais pendências são requisitos de entrada e quais
+serão adiadas, registrando essa decisão. A pasta `experimentos/README.md`
+explica a relação entre fases do roteiro e IDs das pastas.
 
 ## Fase 1 - Núcleo sem prior mágico
 
@@ -87,7 +109,7 @@ mais rápido.
 **Falsificada se:** o ARI não for ≥ 0,95 em σ ∈ {0.3, 0.4, 0.5} com um único
 conjunto de parâmetros e `w0` variando por um fator 4.
 
-## Fase 2 - Experimento 6: contexto não aditivo (o teste decisivo)
+## Fase 2 - Experimento 6: contexto não aditivo (executada; não informativa)
 
 **Pergunta:** as câmaras por contexto ganham do NCM com deslocamento quando o
 contexto afeta **cada pessoa de um jeito próprio**?

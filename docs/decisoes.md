@@ -28,3 +28,19 @@
   acrescentam sementes após inspeções intermediárias usando IC convencional.
 - Se houver mais de uma hipótese primária, a família confirmatória inteira
   recebe correção de multiplicidade. Células secundárias são exploratórias.
+
+## 2026-10-21 — organização e registros após v0.4
+
+- Os números das pastas identificam experimentos; as fases são etapas do
+  roteiro. Mantêm-se os caminhos históricos: `experimentos/fase1` para o prior
+  adaptativo e `experimentos/06` para o contexto não aditivo, correspondente à
+  Fase 2.
+- Cada JSON em `resultados/execucoes/` representa uma execução. Os experimentos
+  1 a 5 permanecem exploratórios e não serão migrados retroativamente para o
+  registrador.
+- Os JSONs existentes não serão editados para substituir hashes ausentes. A
+  correspondência inferida e a execução exploratória com árvore suja permanecem
+  identificadas como limitações.
+- A Fase 0 está parcialmente concluída; `docs/04-proximos-passos.md` registra o
+  que falta e exige decidir o que será requisito ou adiado antes de outro
+  experimento.
