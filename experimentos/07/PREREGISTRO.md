@@ -1,8 +1,10 @@
 # Pré-registro — Experimento 7: contexto heteroscedástico
 
-**Estado deste documento:** proposta para revisão. Nenhuma semente de calibração
-ou teste do experimento 7 foi executada. Após revisão e merge deste pré-registro,
-o commit integrado será a referência congelada para a calibração.
+**Estado deste documento:** pré-registro integrado ao `master` no merge commit
+`191685b963e396887cc74c8ca0a124d43126827f`. Nenhuma semente de calibração ou
+teste do experimento 7 foi executada. Os esclarecimentos ao final deste documento
+foram registrados antes de qualquer calibração; o commit original do pré-registro
+permanece preservado no histórico.
 
 ## Pergunta e hipótese
 
@@ -90,8 +92,8 @@ Comparadores:
   espaçados entre 0 e 1;
 - MLP com `hidden ∈ {32,64,128,256,512}` e
   `alpha ∈ {1e-5,1e-4,1e-3,1e-2}`;
-- Gaussian Naive Bayes, com 20 valores de `var_smoothing` igualmente espaçados
-  em escala logarítmica de `1e-12` a `1e-1`;
+- Gaussian Naive Bayes, com priors uniformes entre as 50 classes e 20 valores de
+  `var_smoothing` igualmente espaçados em escala logarítmica de `1e-12` a `1e-1`;
 - centro-contexto com variância isotrópica por identidade, retração do centro
   (`λ`) e retração da variância (`κ`), com 20 pares de configuração.
 
@@ -198,3 +200,56 @@ pré-registro e sementes novas.
 
 Este é um experimento sintético. Não testa dados reais, embeddings congelados,
 memória autobiográfica ou hardware.
+
+## Esclarecimentos pré-calibração
+
+Este adendo foi registrado depois da integração do pré-registro original e antes
+de qualquer execução de calibração. Ele torna operacionais escolhas que estavam
+implícitas; não usa resultados de calibração ou teste.
+
+### Gaussian Naive Bayes
+
+Para cada episódio, calcular os deslocamentos globais por contexto com a mesma
+função e os mesmos dados de treino usados pelos comparadores em
+`experimentos/06/modelos.py::deslocamentos_globais`. Subtrair o deslocamento do
+contexto de cada observação de treino e o deslocamento do contexto final de cada
+consulta. Ajustar `GaussianNB` apenas nesses vetores corrigidos e rótulos de
+treino, com prior uniforme explícito entre as classes presentes no treino. A
+busca usa `np.geomspace(1e-12, 1e-1, 20)` para `var_smoothing`; nenhuma outra
+configuração ou transformação será ajustada.
+
+### MLP
+
+O MLP usa a transformação já implementada em
+`experimentos/06/modelos.py::prever_mlp`: concatenar aos vetores de treino um
+indicador one-hot do contexto de cada observação e, nas consultas, o indicador
+one-hot do contexto final. Não aplicar correção de deslocamento global ao MLP.
+Usar `hidden_layer_sizes=(hidden,)`, `alpha` da grade, `learning_rate_init=0.001`,
+`max_iter=200`, `early_stopping=True`, `n_iter_no_change=10` e
+`random_state=semente`.
+
+### Desvio padrão para dimensionar o teste
+
+`s_Δ` é o desvio padrão amostral (`ddof=1`) dos 30 deltas pareados de calibração,
+calculados com a configuração das câmaras e o melhor baseline já selecionados
+pelas médias de calibração. Esse valor entra na fórmula de `n` já registrada;
+não se reestima `n` com sementes de teste.
+
+### Grade das câmaras e ablações
+
+A grade das câmaras é o produto cartesiano
+`w0 ∈ {0,08; 0,16; 0,32; 0,64; 1,28}` e
+`eta_min ∈ {0,01; 0,02; 0,05; 0,10}`, como no pré-registro do Exp. 6.
+Nas ablações exploratórias, usar a configuração da câmara congelada na célula
+primária e avaliá-las apenas na célula primária, com as sementes exploratórias
+`10000–10009`:
+
+- **sem largura adaptativa:** `largura_adaptativa=False`, mantendo contextos e
+  deslocamento aprendidos pela memória;
+- **sem deslocamento:** `aprende_deslocamento=False`, mantendo as câmaras por
+  contexto;
+- **sem câmaras por contexto:** corrigir treino e consultas pelos deslocamentos
+  globais calculados apenas com treino; alimentar todas as observações à memória
+  com `ctx=0` e consultar com `ctx=0`, sem deslocamento interno. Assim a memória
+  conserva uma câmara por identidade, sem armazenar câmaras separadas por
+  contexto.
