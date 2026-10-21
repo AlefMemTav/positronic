@@ -1,0 +1,135 @@
+{
+  "H_cal": 0.10936666666666661,
+  "acuracia_calibracao_camaras": 0.8211666666666666,
+  "baseline_selecionado": {
+    "config": {
+      "kappa": 0.0,
+      "lambda": 0.75
+    },
+    "familia": "variancia_identidade",
+    "media_calibracao": 0.8906333333333334
+  },
+  "celula_primaria": {
+    "exposicoes": 3,
+    "forca": 0.8,
+    "heterogeneidade": 1.0,
+    "n_contextos": 4,
+    "sigma_medio": 2.0
+  },
+  "commit_preregistro": "183041319e347c7ef284915ff3060b62956ecdb5",
+  "config_camera": {
+    "eta_min": 0.01,
+    "w0": 0.08
+  },
+  "criado_em_utc": "2026-10-21T23:20:20.109903+00:00",
+  "criterio_s_delta": "desvio padrão amostral ddof=1 dos deltas pareados",
+  "dimensionamento_teste": {
+    "n": 30,
+    "s_delta_ddof_1": 0.030558855969439032,
+    "sementes_teste": [
+      9000,
+      9001,
+      9002,
+      9003,
+      9004,
+      9005,
+      9006,
+      9007,
+      9008,
+      9009,
+      9010,
+      9011,
+      9012,
+      9013,
+      9014,
+      9015,
+      9016,
+      9017,
+      9018,
+      9019,
+      9020,
+      9021,
+      9022,
+      9023,
+      9024,
+      9025,
+      9026,
+      9027,
+      9028,
+      9029
+    ]
+  },
+  "executavel_confirmatorio": true,
+  "experimento": "07-heterocedasticidade",
+  "fingerprint_codigo": {
+    "arquivos": {
+      ".python-version": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d",
+      "experimentos/06/modelos.py": "73bf8dbf18e860acaef8cb8c6123cac664d21a92d2034d16b4706ec2315c762d",
+      "experimentos/07/PREREGISTRO.md": "77cb66027f77a3c393e3a1929b2958f22b3ca3fd7439c37511431abe2e06f01e",
+      "experimentos/07/calibrar.py": "818eed4a1bc7d153326d2b3155fcc4545d229ca1f993fb367acbea71a0ade4bf",
+      "experimentos/07/desenvolvimento/piloto.py": "739bdb9a4a879aaeb68083b3615e651dc9d8ca8a8359643b0afa52f818fdb881",
+      "experimentos/07/modelos.py": "6ed17c6f8f3ab5fbb78bd3430f288cfbe9f5ea5473d3e2c08718e64a368514c8",
+      "experimentos/07/protocolo.py": "6740611db32826fed11f3c5a6e4f035856ccadc1d55373e391df9b7fc13b5a34",
+      "experimentos/07/run_grade.py": "fb9bc79248afcff6e08b6fbba2582665bbf25cd8b7ec0978806427cbfd4b3271",
+      "experimentos/07/run_teste.py": "a7938e7e2d60bf75a020d662f7b4dc6f0650fad540f38f7e8df12831a5a7872d",
+      "experimentos/comum/legado.py": "6a51799f3a33eab4ce9801d3a717d526b90f34d942dc5f424ad9eea328e5dbce",
+      "ranhuras/__init__.py": "113ad711bb3ad11d850db1ea4da4fd04a3d76c88eb236109c4c1354530ed41d5",
+      "requirements.txt": "e0b7fc494cb77cd3c0ba10d284baef25df401d503e5790d27259d326323e0769"
+    },
+    "sha256": "d6a65ea9492344956da27d2cfcea3a01bdec567d46b950937734b1084765756b"
+  },
+  "git": {
+    "alteracoes_locais": false,
+    "commit": "25124a2b243128809e07f3a39053cfbb5b2cf91c"
+  },
+  "registro_calibracao": "resultados/execucoes/07-calibracao-07c1613b-f984-416b-9290-0046bf2c129f.json",
+  "resultado_por_sigma": [
+    {
+      "H_cal": 0.07123333333333326,
+      "passou_gate": false,
+      "sigma_medio": 1.6
+    },
+    {
+      "H_cal": 0.10936666666666661,
+      "passou_gate": true,
+      "sigma_medio": 2.0
+    }
+  ],
+  "schema_version": 1,
+  "sementes_calibracao": [
+    8000,
+    8001,
+    8002,
+    8003,
+    8004,
+    8005,
+    8006,
+    8007,
+    8008,
+    8009,
+    8010,
+    8011,
+    8012,
+    8013,
+    8014,
+    8015,
+    8016,
+    8017,
+    8018,
+    8019,
+    8020,
+    8021,
+    8022,
+    8023,
+    8024,
+    8025,
+    8026,
+    8027,
+    8028,
+    8029
+  ],
+  "sigma_avaliados": [
+    1.6,
+    2.0
+  ]
+}
