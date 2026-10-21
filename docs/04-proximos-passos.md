@@ -39,7 +39,7 @@ Todo experimento novo deve incluir, quando fizer sentido para a tarefa:
 
 | Fase | Foco | Por quê agora | Esforço (estimativa) | Estado em 2026-10-21 |
 |---|---|---|---|---|
-| 0 | Higiene do repositório | base para tudo o resto | 1 a 2 dias | Parcial |
+| 0 | Higiene do repositório | base para tudo o resto | 1 a 2 dias | Requisitos mínimos concluídos; itens legados adiados |
 | 1 | Núcleo sem prior mágico | o exp. 3 mostrou fragilidade | 2 a 4 dias | Executada; resultado inconclusivo |
 | 2 | **Exp. 6: contexto não aditivo** | primeiro teste que pode dar vantagem real | 3 a 5 dias | Executada; não informativa por efeito de teto |
 | 3 | Retorno rápido ("saudade") | testa uma promessa específica da ideia | 2 a 4 dias | Não iniciada |
@@ -49,11 +49,12 @@ Todo experimento novo deve incluir, quando fizer sentido para a tarefa:
 | 7 | Revisão de literatura e escrita | saber o que é novo de fato | contínuo | Não concluída |
 | 8 | Hardware (adiado) | só se a fase 5 justificar | - | Adiada |
 
-O roteiro original considera as fases 0 e 1 pré-requisitos. Como a Fase 0 está
-parcial e a Fase 1 teve resultado inconclusivo, o estado dessas duas fases deve
-ser levado em conta antes de começar outro estudo. As fases 2 a 5 são
-independentes entre si depois que esses pré-requisitos forem tratados; a Fase 2
-foi executada primeiro por poder testar a tese central diretamente.
+O requisito operacional mínimo da Fase 0 está concluído; as tarefas de
+reprodução e visualização dos experimentos legados foram adiadas. A Fase 1
+continua inconclusiva, portanto não conta como confirmação do núcleo sem prior
+mágico. O pré-registro de cada novo estudo deve declarar se sua hipótese depende
+da Fase 1 ou se pode ser avaliada independentemente dela. A Fase 2 foi executada
+primeiro por poder testar a tese central diretamente.
 
 ### Leitura do estado atual
 
@@ -72,24 +73,28 @@ sem prior mágico foi satisfeita.
 
 ## Fase 0 - Higiene
 
-**Estado: parcialmente concluída.** O Git, as dependências fixadas, o CHANGELOG
-e o módulo de registro JSON para as execuções recentes existem. A lista abaixo
-separa o que está pronto do que continua pendente:
+**Estado: requisitos mínimos concluídos para iniciar um novo experimento.** O
+Git, as dependências fixadas, o CHANGELOG, os testes unitários do núcleo e do
+registrador e os comandos básicos do `Makefile` estão disponíveis. Itens de
+reprodução e visualização dos experimentos legados ficam adiados; não são
+pré-requisitos para o experimento 7.
 
 | Item | Estado |
 |---|---|
 | Controle de versão (Git) e CHANGELOG | Concluído; o histórico de versões está em `CHANGELOG.md`. |
-| Testes unitários do núcleo (brotar, erosão, murchar e deslocamento) | Pendente. Os testes atuais cobrem o módulo de registro, não o núcleo. |
-| Separar calibração e teste nos experimentos antigos, em especial nas varreduras do experimento 3 | Pendente para os experimentos 1 a 5. As execuções novas da Fase 1 e do experimento 6 têm sementes separadas. |
-| Parâmetros de linha de comando e saída JSON para os experimentos antigos | Parcial. O registro JSON existe, mas os experimentos 1 a 5 não foram migrados para usá-lo. |
-| Gráficos dos experimentos 1, 2 e 3 | Pendente. |
-| `pyproject.toml` ou `Makefile` com comandos de execução e teste | Pendente. |
+| Testes unitários do núcleo (brotar, erosão, murchar e deslocamento) | Concluído; propriedades mecânicas cobertas em `tests/test_ranhuras.py`. |
+| Separar calibração e teste nos experimentos antigos, em especial nas varreduras do experimento 3 | Adiado para os experimentos 1 a 5. A avaliação comparativa da Fase 1 usou sementes novas, mas não substitui uma nova análise das varreduras 3b/3c. |
+| Parâmetros de linha de comando e saída JSON para os experimentos antigos | Adiado. Os resultados antigos permanecem históricos; não serão convertidos em registros retroativos. |
+| Reexecuções exploratórias das varreduras 3b/3c e gráficos dos experimentos 1, 2 e 3 | Adiados; não são requisito para iniciar o experimento 7. |
+| `Makefile` com comandos de instalação, teste e execução | Concluído: `make install`, `make test` e `make run`. |
 
 Os experimentos 1 a 5 permanecem exploratórios; seus arquivos e números não
-serão reescritos para preencher retroativamente esses itens. Antes de iniciar
-outro experimento, decidir quais pendências são requisitos de entrada e quais
-serão adiadas, registrando essa decisão. A pasta `experimentos/README.md`
-explica a relação entre fases do roteiro e IDs das pastas.
+serão reescritos para preencher retroativamente esses itens. Reexecuções futuras
+serão registros novos, com rótulo exploratório e proveniência própria. A Fase 1
+usou sementes novas para avaliar o comparador histórico, mas isso não corrige a
+seleção original nas varreduras 3b/3c nem substitui sua reexecução. Esses itens
+foram explicitamente adiados. A pasta `experimentos/README.md` explica a relação
+entre fases do roteiro e IDs das pastas.
 
 ## Fase 1 - Núcleo sem prior mágico
 

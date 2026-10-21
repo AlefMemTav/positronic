@@ -5,7 +5,11 @@ indicados em cada seção.
 
 ## Não lançado
 
-Nenhuma mudança registrada.
+- Adicionados testes unitários mecânicos para brotar, erosão, murchar e
+  deslocamento, além de comandos `make install`, `make test` e `make run`.
+- Definidos os requisitos mínimos da Fase 0 para iniciar novos experimentos;
+  reexecuções e gráficos legados 3b/3c foram adiados sem alterar os resultados
+  históricos.
 
 ## v0.4-exp6 — 2026-10-21
 
