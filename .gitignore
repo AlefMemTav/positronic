@@ -6,5 +6,4 @@ venv/
 .coverage
 htmlcov/
 .ruff_cache/
-resultados/execucoes/
 resultados/figuras/
