@@ -61,3 +61,41 @@ mera disponibilidade.
   versionado ou sujo, versões de Python e bibliotecas e identificador das
   sementes.
 - O critério de parada do projeto é o descrito em `docs/04-proximos-passos.md`.
+
+## Margem de manobra (aplicável a partir do experimento 7)
+
+- Escolher o baseline e seus hiperparâmetros usando somente as sementes de
+  calibração, com a busca e o orçamento pré-registrados; para acurácia, vence a
+  configuração com maior média nessas sementes. Na célula primária, calcular
+  `H_cal = 1 − média da acurácia do baseline escolhido nas sementes de
+  calibração`. Registrar essa média e `H_cal` sem
+  arredondar os valores usados na decisão. Para outras métricas, definir no
+  pré-registro tanto a métrica quanto o cálculo equivalente da margem.
+- Exigir `H_cal ≥ 2 × efeito mínimo relevante` (0,10 para um efeito de 5 pontos),
+  verificado e registrado **antes** de congelar a configuração e antes de abrir
+  qualquer semente de teste.
+- Se a condição não for satisfeita, o experimento é declarado "não executável
+  como confirmatório": nenhuma semente de teste é aberta, e o gerador ou a tarefa
+  é redesenhado e pré-registrado de novo.
+- Se a condição for satisfeita na calibração, aplicar ao teste uma única vez a
+  regra de decisão pré-registrada por Δ e seu IC. Não reavaliar a margem usando
+  as sementes de teste. Se a condição falhar na calibração, não há conclusão
+  confirmatória, mesmo que uma execução exploratória posterior pareça favorável.
+- O experimento 6, anterior a esta regra, foi reclassificado como "não
+  informativo" na errata de `experimentos/06/LEIA.md`.
+
+## Rastreabilidade e histórico
+
+- Depois que um commit é citado por um registro JSON, não reescrever o histórico
+  (rebase, amend, force-push) de branches que o contenham. Se for inevitável,
+  incluir no `LEIA.md` do experimento, antes do merge, a tabela de hashes
+  antigos e atuais, sem editar os JSONs.
+- Enviar ao remoto os commits de pré-registro e de congelamento antes de abrir
+  as sementes de teste.
+- A partir do experimento 7, o script de teste deve abortar se houver alterações
+  locais não commitadas; o JSON de cada execução é commitado antes da execução
+  seguinte.
+- A função `holm` de `registro.py` opera sobre p-valores, e as decisões atuais
+  usam intervalos de bootstrap. Ela só se aplica a análises que produzam p-valores
+  pré-registrados; até lá, a multiplicidade se controla fixando uma única célula
+  primária.
