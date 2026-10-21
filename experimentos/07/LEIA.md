@@ -1,7 +1,8 @@
 # Experimento 7 — estado e execução
 
-**Estado:** calibração e teste confirmatório concluídos; grade exploratória ainda
-pendente. O PR do pipeline e o PR da calibração foram integrados antes do teste.
+**Estado:** calibração, teste confirmatório e grade exploratória concluídos. O PR
+do pipeline e o PR da calibração foram integrados antes do teste; os resultados
+confirmatórios foram integrados antes da grade.
 
 ## Fluxo previsto
 
@@ -44,5 +45,36 @@ também estão registradas nessa pasta e em `configuracao-congelada.json`.
 O teste começou com árvore limpa no commit `39cd19f`. Os registros por semente
 marcam `alteracoes_locais: true` porque o próprio processo grava esses arquivos
 durante a execução; `commit_no_inicio` preserva o commit limpo do código usado.
-Nenhuma semente exploratória foi executada. A grade e as ablações continuam
-pendentes e não alteram o desfecho primário.
+
+## Grade exploratória
+
+A grade usou dez sementes (`10000–10009`) em 216 células. A média de Δ das câmaras
+menos o baseline, agregada descritivamente pelas 54 células de cada número de
+exposições e pelas dez sementes, foi:
+
+| Exposições | Δ médio |
+| ---: | ---: |
+| 0 | +0,8 pp |
+| 1 | +3,3 pp |
+| 3 | −9,5 pp |
+| 10 | −5,0 pp |
+
+Essas médias resumem uma grade heterogênea; não são testes confirmatórios nem
+intervalos de confiança. A célula de zero exposições foi mantida separada e ficou
+próxima de paridade em média, embora haja variação entre as demais condições.
+As maiores médias de Δ ocorreram com uma exposição, heterogeneidade 0,35, dois
+contextos e força 0,4 (entre +20,7 e +24,6 pp conforme σ̄). Os valores mais
+negativos apareceram sobretudo com três exposições, oito contextos e
+heterogeneidade 0,35 (até −20,7 pp). Esses extremos são exploratórios e não
+alteram o resultado primário.
+
+Na ablação descritiva da célula primária, a acurácia média foi 0,6855 sem largura
+adaptativa, 0,8146 sem deslocamento e 0,8735 sem câmaras por contexto. A versão
+completa teve 0,7928; o baseline teve 0,8664. Cada valor de ablação usa as mesmas
+dez sementes da grade, portanto descreve apenas essa célula e não constitui um
+novo teste confirmatório.
+
+O resumo agregado e os dez registros por semente estão em
+`resultados/execucoes/07-grade-*.json`. Todos os achados da grade são
+exploratórios; não mudam o desfecho confirmatório, que permanece refutado para a
+célula primária pré-registrada.
