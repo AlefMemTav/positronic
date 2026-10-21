@@ -70,9 +70,10 @@ alteram o resultado primário.
 
 Na ablação descritiva da célula primária, a acurácia média foi 0,6855 sem largura
 adaptativa, 0,8146 sem deslocamento e 0,8735 sem câmaras por contexto. A versão
-completa teve 0,7928; o baseline teve 0,8664. Cada valor de ablação usa as mesmas
-dez sementes da grade, portanto descreve apenas essa célula e não constitui um
-novo teste confirmatório.
+completa teve 0,8137 e o baseline 0,8823 nas mesmas dez sementes exploratórias.
+Assim, a comparação das ablações é pareada por semente e descreve apenas essa
+célula; não constitui um novo teste confirmatório. Os valores do teste
+confirmatório de 30 sementes são apresentados separadamente acima.
 
 O resumo agregado e os dez registros por semente estão em
 `resultados/execucoes/07-grade-*.json`. Todos os achados da grade são
