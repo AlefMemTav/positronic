@@ -18,7 +18,7 @@ from registro import intervalo_bootstrap, criar_registro, salvar_registro
 
 SIGMAS = (0.3, 0.4, 0.5)
 SEMENTES_CALIBRACAO = tuple(range(1000, 1030))
-SEMENTES_TESTE = tuple(range(2000, 2030))
+SEMENTES_TESTE = tuple(range(3000, 3030))
 ALFA = 0.01
 K_VIZINHO = 3
 Q_ORDEM = 0.75
@@ -76,7 +76,7 @@ def executar() -> dict:
 
     inicio_teste = len(SEMENTES_CALIBRACAO)
     resultados = {}
-    print("Fase 1 — estimativa adaptativa, confirmação nas sementes 2000–2029")
+    print("Fase 1 — estimativa adaptativa, replicação nas sementes 3000–3029")
     print("σ       w0 estimado     ARI adaptativo      grupos adaptativos")
     for sigma in SIGMAS:
         teste = slice(inicio_teste, None)
@@ -123,7 +123,6 @@ def executar() -> dict:
         metricas=resultados,
         sementes_calibracao=list(SEMENTES_CALIBRACAO),
         sementes_teste=list(SEMENTES_TESTE),
-        sementes_metricas=list(sementes),
         configuracao={"sigmas": list(SIGMAS), "pior_ari_teste": ic_pior,
                       "grupos_ok": grupos_ok, "decisao": decisao},
     )
