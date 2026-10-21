@@ -12,3 +12,9 @@ Mudanças relevantes do projeto, em ordem cronológica inversa.
 - Adicionado registro JSON por semente com bootstrap pareado e correção de Holm.
 - Executada a Fase 1, com conclusão inconclusiva, e o experimento 6, que não
   confirmou ganho prático de 5 pontos percentuais na célula primária.
+- Reclassificado o resultado do experimento 6 como não informativo (efeito de
+  teto) e documentado o comportamento com 0 exposições, em errata no
+  `experimentos/06/LEIA.md`, com o mapa dos hashes anteriores ao rebase.
+- Adicionadas ao protocolo as regras de margem de manobra e de rastreabilidade
+  do histórico.
+- Pendente: criar a tag `v0.1-prototipo`, que ainda não existe no repositório.
