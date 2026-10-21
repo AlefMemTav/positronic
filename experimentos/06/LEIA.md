@@ -121,8 +121,3 @@ mais.
 
 A grade foi executada com árvore suja porque o JSON primário, recém-criado, ainda
 não estava commitado. Isso é benigno aqui, mas fica registrado.
-
-### 4. Tag
-
-A tag `v0.1-prototipo` (commit `22fa015`) ainda não existe no repositório; ver
-`CHANGELOG.md`.
