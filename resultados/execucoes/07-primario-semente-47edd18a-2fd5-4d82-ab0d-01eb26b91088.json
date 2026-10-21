@@ -1,0 +1,91 @@
+{
+  "ambiente": {
+    "numpy": "2.5.3",
+    "python": "3.12.15",
+    "scikit_learn": "1.9.1"
+  },
+  "configuracao": {
+    "commit_no_inicio": "39cd19fd91569bffc787d81985f7dfe8b8aceab3"
+  },
+  "criado_em_utc": "2026-10-21T23:24:51.100878+00:00",
+  "experimento": "07-primario-semente",
+  "git": {
+    "alteracoes_locais": true,
+    "commit": "39cd19fd91569bffc787d81985f7dfe8b8aceab3"
+  },
+  "metricas_por_semente": {
+    "acuracia_baseline": [
+      0.865
+    ],
+    "acuracia_camaras": [
+      0.805
+    ],
+    "delta_pareado": [
+      -0.05999999999999994
+    ]
+  },
+  "parametros": {
+    "baseline": {
+      "config": {
+        "kappa": 0.0,
+        "lambda": 0.75
+      },
+      "familia": "variancia_identidade",
+      "media_calibracao": 0.8906333333333334
+    },
+    "camera": {
+      "eta_min": 0.01,
+      "w0": 0.08
+    },
+    "celula_primaria": {
+      "exposicoes": 3,
+      "forca": 0.8,
+      "heterogeneidade": 1.0,
+      "n_contextos": 4,
+      "sigma_medio": 2.0
+    },
+    "semente": 9029
+  },
+  "run_id": "47edd18a-2fd5-4d82-ab0d-01eb26b91088",
+  "schema_version": 1,
+  "sementes": {
+    "calibracao": [
+      8000,
+      8001,
+      8002,
+      8003,
+      8004,
+      8005,
+      8006,
+      8007,
+      8008,
+      8009,
+      8010,
+      8011,
+      8012,
+      8013,
+      8014,
+      8015,
+      8016,
+      8017,
+      8018,
+      8019,
+      8020,
+      8021,
+      8022,
+      8023,
+      8024,
+      8025,
+      8026,
+      8027,
+      8028,
+      8029
+    ],
+    "metricas": [
+      9029
+    ],
+    "teste": [
+      9029
+    ]
+  }
+}
