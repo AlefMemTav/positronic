@@ -37,6 +37,11 @@ somente calibração.
 - Para um efeito mínimo relevante de 5 pontos percentuais: confirmado se o
   limite inferior do IC de Δ for ≥ +0,05; refutado se o limite superior for
   < +0,05; caso contrário, inconclusivo.
+- Para métricas diferentes de acurácia, o pré-registro deve definir a escala,
+  o efeito mínimo relevante e a regra equivalente de decisão antes do teste.
+  Diferenças ou razões devem ser calculadas por semente e reamostradas por
+  semente; não se deve aplicar automaticamente a margem de 5 pontos
+  percentuais a métricas com outra unidade.
 - Fixar uma única célula primária sempre que possível. Se houver várias,
   corrigir a família de testes confirmatórios pelo método de Holm. Resultados
   secundários são descritos como exploratórios.

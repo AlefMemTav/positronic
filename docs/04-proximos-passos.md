@@ -43,7 +43,7 @@ Todo experimento novo deve incluir, quando fizer sentido para a tarefa:
 | 1 | Núcleo sem prior mágico | o exp. 3 mostrou fragilidade | 2 a 4 dias | Executada; resultado inconclusivo |
 | 2 | **Exp. 6: contexto não aditivo** | teste exploratório da generalização por contexto | 3 a 5 dias | Executada; não informativa por efeito de teto |
 | Exp. 7 | Câmaras isoladas sob ruído heteroscedástico | comparar v0.4 com baselines ajustados | concluído | Refutado quanto ao ganho mínimo na célula primária |
-| 3 | Retorno rápido ("saudade") | testa uma promessa específica da memória elástica | 2 a 4 dias | Não iniciada; ordem futura a decidir |
+| 3 | Retorno rápido ("saudade") | testa uma promessa específica da memória elástica | 2 a 4 dias | Experimento 8 pré-registrado; pipeline pendente neste commit |
 | 4 | Ressonância entre ranhuras | testa a hipótese de rede e associação | 1 a 2 semanas | Não iniciada; requer especificação e revisão de literatura |
 | 5 | Ranhura espectral (modos) | testa processamento de sinais temporais | 2 a 3 semanas | Não iniciada |
 | 6 | Dados reais e concorrentes | sair do sintético | 2 a 3 semanas | Não iniciada |
@@ -176,15 +176,32 @@ quem só foi visto uma vez.
 **Hipótese:** uma ranhura que murchou volta com **menos exposições** do que
 aprender do zero (economia no reaprendizado, Ebbinghaus).
 
-**Implementação sugerida:** ao ser esquecida por orçamento, a ranhura deixa um
-**traço comprimido** (centro com largura ampla, em memória barata). Ao reencontro,
-o traço funciona como prior e a taxa de erosão inicial é maior.
-**Tarefa:** aprender N pessoas, intercalar T passos com outras pessoas até o
-esquecimento, reencontrar. Medir exposições necessárias para recuperar 90% da
-acurácia original.
-**Baselines:** apagar e reaprender do zero; manter tudo (teto).
-**Falsificada se:** o reaprendizado com traço não exigir pelo menos 30% menos
-exposições que do zero.
+**Estado:** pré-registro do Experimento 8 preparado; nenhuma semente de
+calibração ou teste foi executada. O pipeline será adicionado em commit
+subsequente. Ver `experimentos/08/PREREGISTRO.md`.
+
+**Operacionalização:** ao ser removida do orçamento ativo, a ranhura pode deixar
+um resumo comprimido com centro e largura. No reencontro, o resumo pode ser
+restaurado como prior. O código v0.5 não tem esse arquivo de traços; é uma
+condição nova implementada isoladamente no Experimento 8.
+
+**Tarefa:** 16 classes em vetores sintéticos. Uma classe-alvo é expulsa por uma
+classe nova após um período sem observações; depois de um intervalo, o alvo
+retorna com exposições rotuladas. A cada exposição, medir o recall do alvo em
+consultas independentes e calcular quantas exposições são necessárias para
+recuperar 90% do recall anterior à expulsão; acurácia balanceada fica como
+métrica secundária.
+
+**Baselines:** apagar completamente (comparação confirmatória); cache
+comprimido sem decaimento (controle secundário); manter tudo (teto descritivo).
+As condições com orçamento ativo limitado usam 16 ranhuras e um resumo
+comprimido, quando aplicável.
+
+**Critério:** confirmado se o limite inferior do IC95% da economia relativa de
+exposições (`1 − E90_traço / E90_apagar`) for pelo menos 30%; refutado quanto ao
+efeito mínimo se o limite superior ficar abaixo de 30%; inconclusivo nos demais
+casos. A métrica, os gates e a regra estão definidos em
+`experimentos/08/PREREGISTRO.md`.
 
 ## Fase 4 - Ressonância entre ranhuras (A7 e A8)
 
