@@ -1,10 +1,10 @@
 # 02 - Teoria: o que é meu, o que já existe, onde se encaixa
 
-**Aviso de proveniência.** As referências abaixo vêm da memória do assistente
-(sem busca na web). Os autores e anos são os que ele conhece com confiança, mas
-**confira cada um antes de citar formalmente**. Itens marcados `[verificar]`
-têm menos certeza ou não foram checados. Nenhuma busca sistemática de
-literatura foi feita, então **não está estabelecido que algo aqui seja inédito**.
+**Aviso de proveniência.** As referências das seções A–D foram inicialmente
+reunidas de memória, sem busca sistemática, e ainda precisam de conferência antes
+de citação formal. A seção E registra um levantamento focal com fontes
+verificadas em 2026-10-22; ele também não é uma revisão sistemática. Portanto,
+**não está estabelecido que algo aqui seja inédito**.
 
 Legenda de status: `[MINHA]` hipótese/intuição proposta por mim ·
 `[EXISTE]` campo estabelecido · `[IMPL]` implementado neste repositório ·
@@ -171,3 +171,34 @@ numa única unidade. Os demais itens individualmente têm equivalentes conhecido
 5. Behrouz et al., **Titans** e Khandelwal et al., **kNN-LM** (concorrentes diretos).
 6. Snell et al. 2017, **Prototypical Networks** (o baseline que mais importa).
 7. Izhikevich 2001, **Resonate-and-fire** (para a ranhura "espectral").
+
+---
+
+## E. Levantamento focal preliminar (2026-10-22)
+
+Este levantamento procurou precedentes para quatro partes da proposta: criação
+de unidades/categorias, formação de conexões, memória associativa coletiva e
+plasticidade rápida com decaimento. É uma busca curta e direcionada; não cobre
+todas as variações nem permite concluir se a combinação pretendida é inédita.
+
+| Frente | Precedente verificado | Relação com a proposta e limite da comparação |
+|---|---|---|
+| Categorias que aprendem e crescem | ART 2, Carpenter e Grossberg (1987) | Forma códigos estáveis para padrões analógicos e trata estabilidade-plasticidade. A lógica de comparar, aprender ou criar categoria é próxima do brotar; não é a rede de associações proposta. [Artigo](https://pubmed.ncbi.nlm.nih.gov/20523470/) |
+| Unidades e conexões que crescem | Growing Neural Gas, Fritzke (NeurIPS 1994) | Acrescenta unidades e conexões e aprende relações topológicas com aprendizado competitivo hebbiano. É um precedente direto para crescimento de grafo, embora suas arestas representem topologia dos dados, não necessariamente associações semânticas ou coativação temporal. [Artigo](https://proceedings.neurips.cc/paper/1994/file/d56b9fc4b0f1be8871f5e1c40c0067e7-Paper.pdf) |
+| Recuperação coletiva por conexões | Hopfield (1982) | Memória associativa e recuperação dirigida por pistas emergem da dinâmica coletiva de uma rede recorrente. Isso antecede a ideia geral de que o conjunto de unidades recupere um padrão; não usa cavidades com assinaturas deformáveis. [Artigo](https://pmc.ncbi.nlm.nih.gov/articles/PMC346238/) |
+| Associação por dinâmica oscilatória | Baird (NeurIPS 1989); redes oscilatórias hebbianas posteriores | Modelos já armazenam padrões de atividade oscilatória por conexões hebbianas. Logo, oscilação, sincronização ou “acorde” não bastam, isoladamente, para caracterizar novidade. [Artigo de 1989](https://proceedings.neurips.cc/paper/1989/hash/3644a684f98ea8fe223c713b77189a77-Abstract.html), [memória oscilatória com recuperação de padrões](https://pubmed.ncbi.nlm.nih.gov/38094002/) |
+| Plasticidade rápida e memória recente | Ba et al. (NeurIPS 2016), *Using Fast Weights to Attend to the Recent Past* | Pesos rápidos que mudam durante o processamento servem como memória de curto prazo. É parente conceitual da elasticidade temporal, mas não equivale à regra de murchar e reencontrar das ranhuras. [Artigo](https://papers.nips.cc/paper_files/paper/2016/hash/9f44e956e3a2b7b5598c625fcc802c36-Abstract.html) |
+
+### Leitura provisória
+
+Os ingredientes individuais — categorias que brotam, grafos que crescem,
+associação distribuída, dinâmica oscilatória e plasticidade rápida — têm
+precedentes. A busca não encontrou, nem foi desenhada para provar, que a
+combinação específica de assinatura deformável, crescimento/poda de ligações,
+memória contextual e a tarefa pretendida já exista ou seja inédita. A contribuição
+potencial precisa ser definida como uma regra e um comportamento mensurável; não
+deve ser afirmada com base apenas na inspiração biológica ou na metáfora do
+acorde.
+
+Este levantamento é um mapa inicial para orientar a revisão de literatura ainda
+pendente, não uma validação de novidade nem uma recomendação de implementação.

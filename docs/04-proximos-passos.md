@@ -2,8 +2,8 @@
 
 ## Regra do jogo
 
-Até aqui, o protótipo provou que **a lógica funciona** (brotar, erodir, murchar,
-câmaras) mas **não provou que ganha de um centro médio** (NCM). Cada passo abaixo
+Até aqui, o protótipo implementa brotar, erodir, murchar e câmaras, mas os
+resultados não demonstram uma vantagem geral sobre métodos de protótipos. Cada passo abaixo
 precisa de: **hipótese · tarefa · baseline · métrica · critério de falsificação
 definido antes de rodar**. Se a hipótese falhar, isso entra em
 `docs/03-resultados-e-limites.md` como resultado, não some.
@@ -37,24 +37,26 @@ Todo experimento novo deve incluir, quando fizer sentido para a tarefa:
 
 ## Visão geral (ordem sugerida)
 
-| Fase | Foco | Por quê agora | Esforço (estimativa) | Estado em 2026-10-21 |
+| Fase/estudo | Foco | Por quê agora | Esforço (estimativa) | Estado em 2026-10-22 |
 |---|---|---|---|---|
 | 0 | Higiene do repositório | base para tudo o resto | 1 a 2 dias | Requisitos mínimos concluídos; itens legados adiados |
 | 1 | Núcleo sem prior mágico | o exp. 3 mostrou fragilidade | 2 a 4 dias | Executada; resultado inconclusivo |
-| 2 | **Exp. 6: contexto não aditivo** | primeiro teste que pode dar vantagem real | 3 a 5 dias | Executada; não informativa por efeito de teto |
-| 3 | Retorno rápido ("saudade") | testa uma promessa específica da ideia | 2 a 4 dias | Não iniciada |
-| 4 | Ressonância entre ranhuras | a parte mais distinta da proposta | 1 a 2 semanas | Não iniciada |
-| 5 | Ranhura espectral (modos) | testa se "ressonância" é mais que metáfora | 2 a 3 semanas | Não iniciada |
+| 2 | **Exp. 6: contexto não aditivo** | teste exploratório da generalização por contexto | 3 a 5 dias | Executada; não informativa por efeito de teto |
+| Exp. 7 | Câmaras isoladas sob ruído heteroscedástico | comparar v0.4 com baselines ajustados | concluído | Refutado quanto ao ganho mínimo na célula primária |
+| 3 | Retorno rápido ("saudade") | testa uma promessa específica da memória elástica | 2 a 4 dias | Não iniciada; ordem futura a decidir |
+| 4 | Ressonância entre ranhuras | testa a hipótese de rede e associação | 1 a 2 semanas | Não iniciada; requer especificação e revisão de literatura |
+| 5 | Ranhura espectral (modos) | testa processamento de sinais temporais | 2 a 3 semanas | Não iniciada |
 | 6 | Dados reais e concorrentes | sair do sintético | 2 a 3 semanas | Não iniciada |
-| 7 | Revisão de literatura e escrita | saber o que é novo de fato | contínuo | Não concluída |
+| 7 | Revisão de literatura e escrita | delimitar o que já existe antes de alegar novidade | contínuo | Não concluída; necessária antes de prototipar a hipótese de rede |
 | 8 | Hardware (adiado) | só se a fase 5 justificar | - | Adiada |
 
 O requisito operacional mínimo da Fase 0 está concluído; as tarefas de
-reprodução e visualização dos experimentos legados foram adiadas. A Fase 1
-continua inconclusiva, portanto não conta como confirmação do núcleo sem prior
-mágico. O pré-registro de cada novo estudo deve declarar se sua hipótese depende
-da Fase 1 ou se pode ser avaliada independentemente dela. A Fase 2 foi executada
-primeiro por poder testar a tese central diretamente.
+reprodução e visualização dos experimentos legados foram adiadas. O experimento 7
+também foi concluído, mas não testa as ligações entre unidades da hipótese de
+rede. A Fase 1 continua inconclusiva, portanto não conta como confirmação do
+núcleo sem prior mágico. O pré-registro de cada novo estudo deve declarar se sua
+hipótese depende da Fase 1 ou se pode ser avaliada independentemente dela. A
+Fase 2 foi executada primeiro por poder testar a tese central diretamente.
 
 ### Leitura do estado atual
 
@@ -69,15 +71,28 @@ A Fase 1 também foi executada, mas seu resultado foi inconclusivo. A execução
 anterior à Fase 2 está documentada; ela não demonstra que a hipótese do núcleo
 sem prior mágico foi satisfeita.
 
+O experimento 7 avaliou a versão isolada das câmaras, não uma rede de ranhuras.
+Na condição primária, a acurácia foi 0,7928 contra 0,8664 do baseline
+`variancia_identidade`; `Δ = −7,36` pp, IC95% `[−8,50; −6,22]` pp. O resultado
+refuta o ganho mínimo de 5 pp naquela condição sintética. A grade exploratória
+reutilizou os parâmetros selecionados para a célula primária, portanto seus
+ganhos em algumas células não são evidência confirmatória nem comparação entre
+métodos ajustados especificamente para cada célula. Ver `experimentos/07/LEIA.md`.
+
+**Encerramento da linha isolada:** a versão v0.4 das câmaras e sua hipótese de
+ganho na condição primária ficam encerradas com o experimento 7. Não ajustar essa
+mesma versão para tentar reverter o resultado. Uma variante futura é uma hipótese
+nova e exige justificativa, pré-registro e avaliação próprios.
+
 ---
 
 ## Fase 0 - Higiene
 
-**Estado: requisitos mínimos concluídos para iniciar um novo experimento.** O
+**Estado: requisitos mínimos concluídos para iniciar novos experimentos.** O
 Git, as dependências fixadas, o CHANGELOG, os testes unitários do núcleo e do
 registrador e os comandos básicos do `Makefile` estão disponíveis. Itens de
-reprodução e visualização dos experimentos legados ficam adiados; não são
-pré-requisitos para o experimento 7.
+reprodução e visualização dos experimentos legados ficam adiados; a conclusão
+do experimento 7 não os cobriu.
 
 | Item | Estado |
 |---|---|
@@ -85,7 +100,7 @@ pré-requisitos para o experimento 7.
 | Testes unitários do núcleo (brotar, erosão, murchar e deslocamento) | Concluído; propriedades mecânicas cobertas em `tests/test_ranhuras.py`. |
 | Separar calibração e teste nos experimentos antigos, em especial nas varreduras do experimento 3 | Adiado para os experimentos 1 a 5. A avaliação comparativa da Fase 1 usou sementes novas, mas não substitui uma nova análise das varreduras 3b/3c. |
 | Parâmetros de linha de comando e saída JSON para os experimentos antigos | Adiado. Os resultados antigos permanecem históricos; não serão convertidos em registros retroativos. |
-| Reexecuções exploratórias das varreduras 3b/3c e gráficos dos experimentos 1, 2 e 3 | Adiados; não são requisito para iniciar o experimento 7. |
+| Reexecuções exploratórias das varreduras 3b/3c e gráficos dos experimentos 1, 2 e 3 | Adiados; não foram cobertos pelo experimento 7. |
 | `Makefile` com comandos de instalação, teste e execução | Concluído: `make install`, `make test` e `make run`. |
 
 Os experimentos 1 a 5 permanecem exploratórios; seus arquivos e números não
@@ -133,9 +148,24 @@ específico da pessoa.
 **Baselines:** NCM, NCM + deslocamento global, kNN, Prototypical Network com
 contexto como entrada, centro por (pessoa, contexto) sem hierarquia.
 **Métrica:** acurácia nas pessoas em contexto novo, em função do nº de exposições.
-**Falsificada se:** em nenhuma célula do grid as câmaras vencem o melhor baseline
-por ≥ 5 pontos (10 sementes, desvios não sobrepostos). Nesse caso, a tese
-"ranhura codifica contexto" não se sustenta além do deslocamento aditivo.
+O experimento 6 foi classificado como não informativo por efeito de teto. Esse
+resultado histórico não é substituído pelo experimento 7, que testou outra
+condição e uma hipótese confirmatória própria.
+
+## Experimento 7 - Câmaras isoladas sob ruído heteroscedástico (concluído)
+
+**Pergunta:** a versão v0.4 das câmaras supera o melhor baseline ajustado por
+pelo menos 5 pp na condição primária pré-registrada?
+
+**Resultado:** refutado quanto ao ganho mínimo na condição primária: `Δ = −7,36`
+pp, IC95% `[−8,50; −6,22]` pp, em 30 sementes. Isso limita a conclusão à
+condição sintética especificada no pré-registro; não testa a hipótese da rede
+com ligações, ativação propagada ou ressonância coletiva.
+
+A grade de 216 células é exploratória e usa o baseline congelado na calibração
+da condição primária (três exposições). Ganhos em células de uma exposição não
+demonstram vantagem após ajuste por célula. Detalhes e ablações estão em
+`experimentos/07/LEIA.md`.
 
 **Extensão:** aprender `A_p` compartilhando estrutura entre pessoas (por ex.
 `u_ctx` aprendido com quem foi visto em vários contextos), para generalizar a
@@ -167,9 +197,10 @@ Versão em software, em duas etapas:
    atenção softmax** sobre os centros e com uma tabela de relações explícita.
    Tarefa: dado um sinal parcial, recuperar a ranhura relacionada (pessoa → lugar,
    pessoa → contexto frequente).
-2. **Critério de coerência**: definir "acorde coerente" numericamente (por ex. energia
-   do estado conjunto, ou coerência de fase de um banco de osciladores acoplados,
-   modelo de Kuramoto) e usá-lo como medida de "entendeu / não entendeu".
+2. **Dinâmica coletiva**: definir uma medida de coerência (por ex. energia do
+   estado conjunto ou coerência de fase de osciladores acoplados) como variável
+   diagnóstica. O sucesso principal deve ser medido numa tarefa de recuperação
+   ou associação; coerência por si só não define que o sistema "entendeu".
 **Falsificada se:** a recuperação por ressonância não superar a atenção softmax
 simples nem a tabela explícita em acurácia ou em robustez a ruído.
 
@@ -251,7 +282,10 @@ quantitativo de energia ou latência. Antes de construir: simular a acústica
 
 ## Critério de parada honesto
 
-Se **os exps. 4 e 6 e a fase 3 falharem** em mostrar vantagem sobre NCM com
-deslocamento e sobre o traço comprimido, a descrição mais fiel do projeto passa a
-ser: *"uma variante de ART com política de esquecimento por força decaída"*. Isso
-ainda é um resultado sólido e reaproveitável, só não é uma nova arquitetura. Decidir isso com dados é um resultado, não um fracasso.
+Os critérios dos experimentos 4, 6 e 7 se aplicam às respectivas versões e
+condições, não à hipótese de rede ainda não implementada. Antes de adotar um
+critério de parada para o projeto inteiro, é preciso especificar a tarefa e as
+regras da rede com ligações e compará-la com baselines adequados. A linha v0.4
+das câmaras isoladas está encerrada; uma variante só deve ser reaberta como nova
+hipótese, com justificativa e pré-registro próprios. O resultado do experimento 7
+permanece histórico.

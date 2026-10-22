@@ -5,11 +5,27 @@ indicados em cada seção.
 
 ## Não lançado
 
+- Documentados os resultados confirmatórios e exploratórios do experimento 7,
+  seus limites de interpretação e o estado atualizado do roteiro.
+- Registrado em `docs/02-teoria.md` um levantamento focal preliminar de trabalhos
+  relacionados; a revisão sistemática e qualquer afirmação de novidade seguem
+  pendentes.
+- Atualizado o índice de experimentos e corrigidas referências antigas de
+  estrutura e escopo nos documentos de resultados e próximos passos.
 - Adicionados testes unitários mecânicos para brotar, erosão, murchar e
   deslocamento, além de comandos `make install`, `make test` e `make run`.
 - Definidos os requisitos mínimos da Fase 0 para iniciar novos experimentos;
   reexecuções e gráficos legados 3b/3c foram adiados sem alterar os resultados
   históricos.
+
+## v0.5-exp7 — 2026-10-21
+
+- Concluído o experimento 7: na condição primária, as câmaras tiveram acurácia
+  0,7928 contra 0,8664 do baseline ajustado; `Δ = −7,36` pp, IC95%
+  `[−8,50; −6,22]` pp. O ganho mínimo de 5 pp foi refutado nessa condição.
+- Registrada uma grade exploratória de 216 células e as ablações, sem usá-las
+  para alterar a conclusão confirmatória.
+- A tag aponta para o commit de integração `d46475a`.
 
 ## v0.4-exp6 — 2026-10-21
 

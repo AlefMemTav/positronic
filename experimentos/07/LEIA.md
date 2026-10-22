@@ -68,6 +68,14 @@ negativos apareceram sobretudo com três exposições, oito contextos e
 heterogeneidade 0,35 (até −20,7 pp). Esses extremos são exploratórios e não
 alteram o resultado primário.
 
+A grade reutilizou o baseline congelado na calibração da condição primária
+(`variancia_identidade`, `λ=0,75`, `κ=0`), que tinha três exposições no contexto
+final. O baseline não foi recalibrado em cada célula. Assim, os deltas positivos
+em algumas células de uma exposição descrevem o comportamento dessa configuração
+congelada, mas não demonstram que as câmaras superam o melhor baseline ajustado
+especificamente para uma exposição. A grade é exploratória e não altera o
+resultado primário.
+
 Na ablação descritiva da célula primária, a acurácia média foi 0,6855 sem largura
 adaptativa, 0,8146 sem deslocamento e 0,8735 sem câmaras por contexto. A versão
 completa teve 0,8137 e o baseline 0,8823 nas mesmas dez sementes exploratórias.
