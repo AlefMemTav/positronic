@@ -43,7 +43,7 @@ Todo experimento novo deve incluir, quando fizer sentido para a tarefa:
 | 1 | Núcleo sem prior mágico | o exp. 3 mostrou fragilidade | 2 a 4 dias | Executada; resultado inconclusivo |
 | 2 | **Exp. 6: contexto não aditivo** | teste exploratório da generalização por contexto | 3 a 5 dias | Executada; não informativa por efeito de teto |
 | Exp. 7 | Câmaras isoladas sob ruído heteroscedástico | comparar v0.4 com baselines ajustados | concluído | Refutado quanto ao ganho mínimo na célula primária |
-| 3 | Retorno rápido ("saudade") | testa uma promessa específica da memória elástica | 2 a 4 dias | Experimento 8 pré-registrado; pipeline pendente neste commit |
+| 3 | Retorno rápido ("saudade") | testa uma promessa específica da memória elástica | 2 a 4 dias | Experimento 8 pré-registrado e pipeline preparado; calibração pendente |
 | 4 | Ressonância entre ranhuras | testa a hipótese de rede e associação | 1 a 2 semanas | Não iniciada; requer especificação e revisão de literatura |
 | 5 | Ranhura espectral (modos) | testa processamento de sinais temporais | 2 a 3 semanas | Não iniciada |
 | 6 | Dados reais e concorrentes | sair do sintético | 2 a 3 semanas | Não iniciada |
@@ -176,9 +176,8 @@ quem só foi visto uma vez.
 **Hipótese:** uma ranhura que murchou volta com **menos exposições** do que
 aprender do zero (economia no reaprendizado, Ebbinghaus).
 
-**Estado:** pré-registro do Experimento 8 preparado; nenhuma semente de
-calibração ou teste foi executada. O pipeline será adicionado em commit
-subsequente. Ver `experimentos/08/PREREGISTRO.md`.
+**Estado:** Experimento 8 pré-registrado e pipeline preparado; nenhuma semente
+de calibração ou teste foi executada. Ver `experimentos/08/PREREGISTRO.md`.
 
 **Operacionalização:** ao ser removida do orçamento ativo, a ranhura pode deixar
 um resumo comprimido com centro e largura. No reencontro, o resumo pode ser

@@ -1,8 +1,8 @@
 # Pré-registro — Experimento 8: retorno rápido após esquecimento
 
 **Fase do roteiro:** Fase 3 — retorno rápido ("saudade").
-**Estado:** pré-registro preparado; pipeline e resultados ainda pendentes.
-Nenhuma semente de calibração ou teste foi executada.
+**Estado:** pré-registro e pipeline preparados; calibração, teste e resultados
+pendentes. Nenhuma semente de calibração ou teste foi executada.
 **Versão avaliada:** núcleo da tag `v0.5-exp7`, sem alteração.
 
 ## Pergunta e hipótese

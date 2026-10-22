@@ -5,6 +5,9 @@ indicados em cada seção.
 
 ## Não lançado
 
+- Pré-registrado e preparado o pipeline do experimento 8 (Fase 3: retorno
+  rápido após esquecimento); nenhuma calibração ou semente de teste foi
+  executada.
 - Documentados os resultados confirmatórios e exploratórios do experimento 7,
   seus limites de interpretação e o estado atualizado do roteiro.
 - Registrado em `docs/02-teoria.md` um levantamento focal preliminar de trabalhos

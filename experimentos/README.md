@@ -9,6 +9,7 @@ fase para etapas do roteiro de pesquisa. Eles não formam uma única sequência.
 | `fase1` | Avaliação do prior adaptativo | Fase 1 — núcleo sem prior mágico | Executada; resultado inconclusivo |
 | `06` | Contexto não aditivo | Fase 2 — experimento 6 | Executado; resultado não informativo por efeito de teto |
 | `07` | Contexto heteroscedástico e câmaras isoladas | Estudo confirmatório independente; não testa a rede com ligações | Executado; ganho mínimo refutado na célula primária |
+| `08` | Retorno rápido após esquecimento | Fase 3 — retorno rápido ("saudade") | Pré-registro e pipeline preparados; calibração pendente |
 | `comum` | Código compartilhado, incluindo a implementação legada | Infraestrutura, não uma fase | Usado pelos wrappers dos experimentos 1 a 5 |
 
 Por isso não existe uma pasta `fase2`: essa etapa do roteiro foi registrada como
