@@ -1,0 +1,73 @@
+{
+  "cache_secundario_e90": [],
+  "config_traco": null,
+  "criado_em_utc": "2026-10-22T15:44:42.500505+00:00",
+  "dimensionamento_teste": null,
+  "ementa_gate": {
+    "e90_apagar_minima_media": 2.0,
+    "max_exposicoes": 30,
+    "ordem_sigma": [
+      0.6,
+      0.8,
+      1.0,
+      1.2
+    ],
+    "recall_alvo_antes_maximo": 0.98,
+    "recall_alvo_antes_minimo": 0.7
+  },
+  "executavel_confirmatorio": false,
+  "experimento": "08-retorno-rapido",
+  "fingerprint_codigo": {
+    "arquivos": {
+      "docs/04-proximos-passos.md": "48b21ace71b1fb053b188e61df6aaef1ae2f9f49db16983b9d7dfc82d1611efc",
+      "docs/protocolo.md": "b1f111b66621b13fa2f75b89e422ce2f3682479984521b978b77afea1493b1fb",
+      "experimentos/08/PREREGISTRO.md": "423d1e29d5597284c6fd1ab72bc823f1833b05805a13670962e91f91961d68c7",
+      "experimentos/08/calibrar.py": "d1a5e4a50fbcba7a02b3fd49dd8271d6a90571a8af286ce9c31fa9770a05aa97",
+      "experimentos/08/modelos.py": "5c1a7b968e50836ece71093b5eaaaeaa2548237ac3405856a22a3274f5146e49",
+      "experimentos/08/protocolo.py": "a01947346dea4e06a718da9c1d7c435381d90dc01ca8af5dbde7200571994da5",
+      "experimentos/08/run_teste.py": "69708b094d5e91ee25a99e53329dd448e4ba32f62ef1b05a6e2f2d73d818decd",
+      "experimentos/comum/legado.py": "6a51799f3a33eab4ce9801d3a717d526b90f34d942dc5f424ad9eea328e5dbce",
+      "ranhuras/__init__.py": "113ad711bb3ad11d850db1ea4da4fd04a3d76c88eb236109c4c1354530ed41d5",
+      "requirements.txt": "e0b7fc494cb77cd3c0ba10d284baef25df401d503e5790d27259d326323e0769"
+    },
+    "sha256": "edd0160c4418aea83c0ab4913fbbc589cbecc1c007519d5979a1511726a2b093"
+  },
+  "git": {
+    "alteracoes_locais": false,
+    "commit": "da4b2a664c8538c7157e77b1c89220b376a41cdd"
+  },
+  "resumo_configuracoes_traco": [],
+  "sementes_calibracao": [
+    12000,
+    12001,
+    12002,
+    12003,
+    12004,
+    12005,
+    12006,
+    12007,
+    12008,
+    12009,
+    12010,
+    12011,
+    12012,
+    12013,
+    12014,
+    12015,
+    12016,
+    12017,
+    12018,
+    12019,
+    12020,
+    12021,
+    12022,
+    12023,
+    12024,
+    12025,
+    12026,
+    12027,
+    12028,
+    12029
+  ],
+  "sigma_primario": null
+}

@@ -5,7 +5,7 @@ legado `experimentos/comum/legado.py`, 10 sementes; "±" é o desvio entre
 sementes, não um intervalo de confiança formal). Os resultados da Fase 1 e do
 experimento 6 têm relatos próprios em `experimentos/fase1/LEIA.md` e
 `experimentos/06/LEIA.md`; os dois estudos também são resumidos abaixo. Os
-resultados dos experimentos 6 e 7 estão registrados por execução em
+resultados dos experimentos 6 a 8 estão registrados por execução em
 `resultados/execucoes/`. Dados 100% sintéticos.
 
 ## O que foi construído
@@ -192,6 +192,30 @@ O resultado confirmatório agregado, os registros por semente, a calibração e 
 grade estão em `resultados/execucoes/`; o protocolo e a interpretação completa
 estão em `experimentos/07/PREREGISTRO.md` e `experimentos/07/LEIA.md`.
 
+### Exp. 8 - retorno rápido após esquecimento
+
+A calibração executou as 30 sementes pré-registradas (`12000–12029`) no commit
+`da4b2a6`, com Python 3.12.15, NumPy 2.5.3 e scikit-learn 1.9.1. Nenhum dos
+quatro valores candidatos de `σ` passou os gates de executabilidade. Em cada
+caso, o recall médio do alvo antes da expulsão ficou acima do limite superior
+pré-registrado de `0,98`:
+
+| `σ` | Recall médio antes da expulsão | `E90` médio de Apagar |
+|---:|---:|---:|
+| 0,6 | 1,0000 | 1,000 |
+| 0,8 | 1,0000 | 1,100 |
+| 1,0 | 0,9973 | 2,000 |
+| 1,2 | 0,9840 | 3,467 |
+
+Pela regra definida antes da calibração, o experimento é **não executável como
+confirmatório**. A configuração registra `executavel_confirmatorio: false`,
+`sigma_primario: null` e nenhum tamanho de amostra de teste. Nenhuma semente de
+teste foi aberta. Portanto, este resultado de calibração não é evidência a favor
+nem contra a hipótese de que o traço acelere o reaprendizado. Uma nova tentativa
+que altere o gerador ou os gates precisa de pré-registro próprio e novas
+sementes. Os artefatos estão em `experimentos/08/LEIA.md`,
+`experimentos/08/configuracao-congelada.json` e `resultados/execucoes/`.
+
 ## Por que a ranhura empata com o NCM aqui (e por que isso é esperado)
 
 No gerador, todas as pessoas têm ruído gaussiano **isotrópico, de mesma variância**,
@@ -214,7 +238,9 @@ acima e em `experimentos/06/LEIA.md` e `experimentos/07/LEIA.md`.
 - O contexto não aditivo específico por pessoa foi testado no Exp. 6, mas o
   resultado foi não informativo por efeito de teto; não se concluiu sobre essa
   hipótese.
-- **Retorno rápido** após longo esquecimento ("saudade"): não testado.
+- **Retorno rápido** após longo esquecimento ("saudade"): não teve teste
+  confirmatório; a calibração do experimento 8 não passou os gates de
+  executabilidade pré-registrados.
 - Comparação com os concorrentes reais (Prototypical Networks, ART, Titans,
   kNN-LM, LoRA por usuário).
 - Qualquer vantagem de energia ou paralelismo (isso só faria sentido em hardware).
